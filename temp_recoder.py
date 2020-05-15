@@ -115,8 +115,8 @@ class BME280():
         bme_data = {
             "temp": temp,
             "humid": humi,
-            "press" : pres
-            "time" : dt_now.isoformat()
+            "press" : pres,
+            "date" : dt_now.isoformat()
         }
 
         return bme_data
@@ -182,6 +182,6 @@ if __name__ == "__main__":
     bme = BME280(pi)
     bme.setup()
     bme_data = bme.output()
-    write_log("roomtemp.log", bme_data["date"], bme_data["temp"])
+    write_log("roomtemp.log", bme_data["date"], '{:.3f}'.format(bme_data["temp"]))
     bme.close()
     
